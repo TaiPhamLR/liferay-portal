@@ -117,6 +117,7 @@ public class LayoutDDMFormFieldTemplateContextContributor
 
 		layoutItemSelectorCriterion.setShowPrivatePages(true);
 		layoutItemSelectorCriterion.setShowPublicPages(true);
+		layoutItemSelectorCriterion.setShowHiddenPages(true);
 
 		layoutItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			new UUIDItemSelectorReturnType());
