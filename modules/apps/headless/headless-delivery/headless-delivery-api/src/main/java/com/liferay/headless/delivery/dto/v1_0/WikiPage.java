@@ -312,7 +312,8 @@ public class WikiPage implements Serializable {
 	protected String description;
 
 	@Schema(
-		description = "The wiki page's media format (e.g., HTML, BBCode, etc.)."
+		description = "The wiki page's media format (e.g., HTML, BBCode, etc.).",
+		example = "text/x-wiki"
 	)
 	public String getEncodingFormat() {
 		return encodingFormat;

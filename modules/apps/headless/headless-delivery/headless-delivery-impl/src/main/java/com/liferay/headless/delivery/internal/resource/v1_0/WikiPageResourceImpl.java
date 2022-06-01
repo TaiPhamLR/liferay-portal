@@ -57,6 +57,7 @@ import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.wiki.constants.WikiConstants;
 import com.liferay.wiki.constants.WikiPageConstants;
+import com.liferay.wiki.exception.WikiPageRuntimeException;
 import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.service.WikiNodeService;
 import com.liferay.wiki.service.WikiPageLocalService;
@@ -360,10 +361,14 @@ public class WikiPageResourceImpl
 	private Map<String, Serializable> _getExpandoBridgeAttributes(
 		WikiPage wikiPage) {
 
-		return CustomFieldsUtil.toMap(
-			com.liferay.wiki.model.WikiPage.class.getName(),
-			contextCompany.getCompanyId(), wikiPage.getCustomFields(),
-			contextAcceptLanguage.getPreferredLocale());
+		try {
+			return CustomFieldsUtil.toMap(
+				com.liferay.wiki.model.WikiPage.class.getName(),
+				contextCompany.getCompanyId(), wikiPage.getCustomFields(),
+				contextAcceptLanguage.getPreferredLocale());
+		} catch (Exception e) {
+			throw new WikiPageRuntimeException("The custom fields value is invalid");
+		}
 	}
 
 	private String _toFormat(String encodingFormat) {
