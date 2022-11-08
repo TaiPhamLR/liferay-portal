@@ -57,6 +57,19 @@ public class ListTypeDefinitionServiceImpl
 	}
 
 	@Override
+	public ListTypeDefinition addListTypeDefinition(
+			String externalReferenceCode, Map<Locale, String> nameMap)
+		throws PortalException {
+
+		_portletResourcePermission.check(
+			getPermissionChecker(), null,
+			ListTypeActionKeys.ADD_LIST_TYPE_DEFINITION);
+
+		return listTypeDefinitionLocalService.addListTypeDefinition(
+			externalReferenceCode, getUserId(), nameMap);
+	}
+
+	@Override
 	public ListTypeDefinition deleteListTypeDefinition(
 			ListTypeDefinition listTypeDefinition)
 		throws PortalException {

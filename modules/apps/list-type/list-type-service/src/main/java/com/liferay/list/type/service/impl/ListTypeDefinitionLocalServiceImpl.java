@@ -96,6 +96,24 @@ public class ListTypeDefinitionLocalServiceImpl
 				LocaleUtil.getDefault(), externalReferenceCode));
 	}
 
+	@Indexable(type = IndexableType.REINDEX)
+	@Override
+	public ListTypeDefinition addListTypeDefinition(
+			String externalReferenceCode, long userId,
+			Map<Locale, String> nameMap)
+		throws PortalException {
+
+		_validateName(nameMap, LocaleUtil.getSiteDefault());
+
+		ListTypeDefinition listTypeDefinition =
+			listTypeDefinitionPersistence.create(
+				counterLocalService.increment());
+
+		listTypeDefinition.setExternalReferenceCode(externalReferenceCode);
+
+		return _addListTypeDefinition(userId, listTypeDefinition, nameMap);
+	}
+
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)

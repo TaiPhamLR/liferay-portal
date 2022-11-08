@@ -77,6 +77,15 @@ public class ListTypeDefinitionLocalServiceUtil {
 			externalReferenceCode, userId);
 	}
 
+	public static ListTypeDefinition addListTypeDefinition(
+			String externalReferenceCode, long userId,
+			Map<java.util.Locale, String> nameMap)
+		throws PortalException {
+
+		return getService().addListTypeDefinition(
+			externalReferenceCode, userId, nameMap);
+	}
+
 	/**
 	 * Creates a new list type definition with the primary key. Does not add the list type definition to the database.
 	 *

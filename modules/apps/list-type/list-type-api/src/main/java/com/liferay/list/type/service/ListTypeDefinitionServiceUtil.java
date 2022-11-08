@@ -46,6 +46,14 @@ public class ListTypeDefinitionServiceUtil {
 		return getService().addListTypeDefinition(nameMap);
 	}
 
+	public static ListTypeDefinition addListTypeDefinition(
+			String externalReferenceCode, Map<java.util.Locale, String> nameMap)
+		throws PortalException {
+
+		return getService().addListTypeDefinition(
+			externalReferenceCode, nameMap);
+	}
+
 	public static ListTypeDefinition deleteListTypeDefinition(
 			ListTypeDefinition listTypeDefinition)
 		throws PortalException {

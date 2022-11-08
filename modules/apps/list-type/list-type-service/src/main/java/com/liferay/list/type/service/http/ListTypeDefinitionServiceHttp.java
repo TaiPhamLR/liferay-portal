@@ -92,6 +92,48 @@ public class ListTypeDefinitionServiceHttp {
 	}
 
 	public static com.liferay.list.type.model.ListTypeDefinition
+			addListTypeDefinition(
+				HttpPrincipal httpPrincipal, String externalReferenceCode,
+				java.util.Map<java.util.Locale, String> nameMap)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				ListTypeDefinitionServiceUtil.class, "addListTypeDefinition",
+				_addListTypeDefinitionParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, externalReferenceCode, nameMap);
+
+			Object returnObj = null;
+
+			try {
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception exception) {
+				if (exception instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						exception;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					exception);
+			}
+
+			return (com.liferay.list.type.model.ListTypeDefinition)returnObj;
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException
+					systemException) {
+
+			_log.error(systemException, systemException);
+
+			throw systemException;
+		}
+	}
+
+	public static com.liferay.list.type.model.ListTypeDefinition
 			deleteListTypeDefinition(
 				HttpPrincipal httpPrincipal,
 				com.liferay.list.type.model.ListTypeDefinition
@@ -101,7 +143,7 @@ public class ListTypeDefinitionServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				ListTypeDefinitionServiceUtil.class, "deleteListTypeDefinition",
-				_deleteListTypeDefinitionParameterTypes1);
+				_deleteListTypeDefinitionParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, listTypeDefinition);
@@ -142,7 +184,7 @@ public class ListTypeDefinitionServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				ListTypeDefinitionServiceUtil.class, "deleteListTypeDefinition",
-				_deleteListTypeDefinitionParameterTypes2);
+				_deleteListTypeDefinitionParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, listTypeDefinitionId);
@@ -183,7 +225,7 @@ public class ListTypeDefinitionServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				ListTypeDefinitionServiceUtil.class, "getListTypeDefinition",
-				_getListTypeDefinitionParameterTypes3);
+				_getListTypeDefinitionParameterTypes4);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, listTypeDefinitionId);
@@ -223,7 +265,7 @@ public class ListTypeDefinitionServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				ListTypeDefinitionServiceUtil.class, "getListTypeDefinitions",
-				_getListTypeDefinitionsParameterTypes4);
+				_getListTypeDefinitionsParameterTypes5);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, start, end);
@@ -255,7 +297,7 @@ public class ListTypeDefinitionServiceHttp {
 			MethodKey methodKey = new MethodKey(
 				ListTypeDefinitionServiceUtil.class,
 				"getListTypeDefinitionsCount",
-				_getListTypeDefinitionsCountParameterTypes5);
+				_getListTypeDefinitionsCountParameterTypes6);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey);
 
@@ -290,7 +332,7 @@ public class ListTypeDefinitionServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				ListTypeDefinitionServiceUtil.class, "updateListTypeDefinition",
-				_updateListTypeDefinitionParameterTypes6);
+				_updateListTypeDefinitionParameterTypes7);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, externalReferenceCode, listTypeDefinitionId,
@@ -329,17 +371,19 @@ public class ListTypeDefinitionServiceHttp {
 
 	private static final Class<?>[] _addListTypeDefinitionParameterTypes0 =
 		new Class[] {java.util.Map.class};
-	private static final Class<?>[] _deleteListTypeDefinitionParameterTypes1 =
-		new Class[] {com.liferay.list.type.model.ListTypeDefinition.class};
+	private static final Class<?>[] _addListTypeDefinitionParameterTypes1 =
+		new Class[] {String.class, java.util.Map.class};
 	private static final Class<?>[] _deleteListTypeDefinitionParameterTypes2 =
+		new Class[] {com.liferay.list.type.model.ListTypeDefinition.class};
+	private static final Class<?>[] _deleteListTypeDefinitionParameterTypes3 =
 		new Class[] {long.class};
-	private static final Class<?>[] _getListTypeDefinitionParameterTypes3 =
+	private static final Class<?>[] _getListTypeDefinitionParameterTypes4 =
 		new Class[] {long.class};
-	private static final Class<?>[] _getListTypeDefinitionsParameterTypes4 =
+	private static final Class<?>[] _getListTypeDefinitionsParameterTypes5 =
 		new Class[] {int.class, int.class};
 	private static final Class<?>[]
-		_getListTypeDefinitionsCountParameterTypes5 = new Class[] {};
-	private static final Class<?>[] _updateListTypeDefinitionParameterTypes6 =
+		_getListTypeDefinitionsCountParameterTypes6 = new Class[] {};
+	private static final Class<?>[] _updateListTypeDefinitionParameterTypes7 =
 		new Class[] {String.class, long.class, java.util.Map.class};
 
 }

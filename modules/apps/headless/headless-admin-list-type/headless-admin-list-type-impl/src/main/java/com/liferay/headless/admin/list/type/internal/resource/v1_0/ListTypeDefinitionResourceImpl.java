@@ -122,8 +122,16 @@ public class ListTypeDefinitionResourceImpl
 			ListTypeDefinition listTypeDefinition)
 		throws Exception {
 
+		if (!GetterUtil.getBoolean(PropsUtil.get("feature.flag.LPS-164278")) &&
+			Validator.isNotNull(
+				listTypeDefinition.getExternalReferenceCode())) {
+
+			throw new UnsupportedOperationException();
+		}
+
 		return _toListTypeDefinition(
 			_listTypeDefinitionService.addListTypeDefinition(
+				listTypeDefinition.getExternalReferenceCode(),
 				LocalizedMapUtil.getLocalizedMap(
 					listTypeDefinition.getName_i18n())));
 	}
