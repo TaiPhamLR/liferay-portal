@@ -333,6 +333,15 @@ public class DLOpenerGoogleDriveManager
 			}
 		}
 		catch (IOException | PortalException exception) {
+			if (exception instanceof GoogleJsonResponseException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						"The GoogleDrive file does not exist", exception);
+				}
+
+				return null;
+			}
+
 			throw new RuntimeException(exception);
 		}
 	}
