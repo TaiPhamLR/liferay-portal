@@ -600,10 +600,12 @@ export default function ActionBuilder({
 									fetchObjectDefinitions();
 								}
 
-								return values.objectActionExecutorKey === value ? '' : setValues({
-									objectActionExecutorKey: value,
-									parameters: {},
-								});
+								return values.objectActionExecutorKey === value
+									? ''
+									: setValues({
+											objectActionExecutorKey: value,
+											parameters: {},
+									  });
 							}}
 							options={
 								Liferay.FeatureFlags['LPS-153714']
