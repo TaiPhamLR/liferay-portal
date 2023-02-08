@@ -79,7 +79,7 @@ export default function _JournalPortlet({
 		const resetInput = (inputName) => {
 			const input = document.getElementById(`${namespace}${inputName}`);
 
-			if (input) {
+			if (input && !articleId) {
 				input.value = '';
 			}
 		};
