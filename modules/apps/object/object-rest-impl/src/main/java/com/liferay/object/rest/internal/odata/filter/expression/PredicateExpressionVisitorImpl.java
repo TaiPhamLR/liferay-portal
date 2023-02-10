@@ -304,7 +304,7 @@ public class PredicateExpressionVisitorImpl
 				defaultPredicate.getRightExpression());
 		}
 
-		return Predicate.not(defaultPredicate);
+		return Predicate.notDo(defaultPredicate);
 	}
 
 	private PredicateExpressionVisitorImpl(
