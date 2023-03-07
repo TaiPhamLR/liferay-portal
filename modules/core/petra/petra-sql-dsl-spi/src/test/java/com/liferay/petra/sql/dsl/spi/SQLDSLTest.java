@@ -1398,7 +1398,7 @@ public class SQLDSLTest {
 	}
 
 	@Test
-	public void testStaticPredicateNot() {
+	public void testStaticPredicateNotOf() {
 		Predicate leftPredicate = MainExampleTable.INSTANCE.nameColumn.eq(
 			"one");
 		Predicate rightPredicate = MainExampleTable.INSTANCE.nameColumn.eq(
@@ -1410,10 +1410,10 @@ public class SQLDSLTest {
 		Predicate ltePredicate =
 			MainExampleTable.INSTANCE.mainExampleIdColumn.lte(3L);
 
-		Predicate notLtePredicate = Predicate.not(ltePredicate);
+		Predicate notLtePredicate = Predicate.notOf(ltePredicate);
 
 		Assert.assertSame(
-			notLtePredicate, notLtePredicate.not((Expression<Boolean>)null));
+			notLtePredicate, notLtePredicate.notOf((Expression<Boolean>)null));
 
 		Assert.assertEquals(
 			" not (MainExample.mainExampleId <= ?) and MainExample.name = ? " +
