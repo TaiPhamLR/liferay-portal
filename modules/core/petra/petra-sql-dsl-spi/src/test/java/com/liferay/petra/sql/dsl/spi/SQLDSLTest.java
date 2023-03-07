@@ -1398,6 +1398,30 @@ public class SQLDSLTest {
 	}
 
 	@Test
+	public void testStaticPredicateNot() {
+		Predicate leftPredicate = MainExampleTable.INSTANCE.nameColumn.eq(
+			"one");
+		Predicate rightPredicate = MainExampleTable.INSTANCE.nameColumn.eq(
+			"two");
+
+		DefaultPredicate defaultPredicate = new DefaultPredicate(
+			leftPredicate, Operand.OR, rightPredicate);
+
+		Predicate ltePredicate =
+			MainExampleTable.INSTANCE.mainExampleIdColumn.lte(3L);
+
+		Predicate notLtePredicate = Predicate.not(ltePredicate);
+
+		Assert.assertSame(
+			notLtePredicate, notLtePredicate.not((Expression<Boolean>)null));
+
+		Assert.assertEquals(
+			" not (MainExample.mainExampleId <= ?) and MainExample.name = ? " +
+				"or MainExample.name = ?",
+			String.valueOf(notLtePredicate.and(defaultPredicate)));
+	}
+
+	@Test
 	public void testSubqueryCount() {
 		DSLQuery dslQuery = DSLQueryFactoryUtil.count(
 		).from(
