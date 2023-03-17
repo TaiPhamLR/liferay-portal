@@ -278,8 +278,10 @@ public class AccountResourceImpl
 	public Account putAccount(Long accountId, Account account)
 		throws Exception {
 
+		Account existingAccount = getAccount(accountId);
+
 		_accountEntryService.updateExternalReferenceCode(
-			accountId, account.getExternalReferenceCode());
+			existingAccount.getId(), account.getExternalReferenceCode());
 
 		_accountEntryOrganizationRelLocalService.
 			setAccountEntryOrganizationRels(
@@ -287,9 +289,10 @@ public class AccountResourceImpl
 
 		return _toAccount(
 			_accountEntryService.updateAccountEntry(
-				accountId, _getParentAccountId(account), account.getName(),
-				account.getDescription(), false, _getDomains(account), null,
-				null, null, _getStatus(account), _getServiceContext(account)));
+				existingAccount.getId(), _getParentAccountId(account),
+				account.getName(), account.getDescription(), false,
+				_getDomains(account), null, null, null, _getStatus(account),
+				_getServiceContext(account)));
 	}
 
 	@Override

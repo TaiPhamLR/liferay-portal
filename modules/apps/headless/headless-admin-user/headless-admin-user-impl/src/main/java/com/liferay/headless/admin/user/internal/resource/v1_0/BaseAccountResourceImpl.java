@@ -1042,16 +1042,12 @@ public abstract class BaseAccountResourceImpl
 
 		if ("PARTIAL_UPDATE".equalsIgnoreCase(updateStrategy)) {
 			accountUnsafeConsumer = account -> patchAccount(
-				account.getId() != null ? account.getId() :
-					Long.parseLong((String)parameters.get("accountId")),
-				account);
+				_getValidAccountId(account, parameters), account);
 		}
 
 		if ("UPDATE".equalsIgnoreCase(updateStrategy)) {
 			accountUnsafeConsumer = account -> putAccount(
-				account.getId() != null ? account.getId() :
-					Long.parseLong((String)parameters.get("accountId")),
-				account);
+				_getValidAccountId(account, parameters), account);
 		}
 
 		if (accountUnsafeConsumer == null) {
@@ -1413,6 +1409,27 @@ public abstract class BaseAccountResourceImpl
 		}
 
 		return permissions.values();
+	}
+
+	private Long _getValidAccountId(
+		Account account, Map<String, Serializable> parameters) {
+
+		if (account.getId() == null) {
+			if (parameters.containsKey("accountId")) {
+				try {
+					return Long.parseLong((String)parameters.get("accountId"));
+				}
+				catch (NumberFormatException numberFormatException) {
+					_log.error(
+						"Invalid Account id: " + parameters.get("accountId"));
+				}
+			}
+
+			throw new IllegalArgumentException(
+				"Please provide valid Account id");
+		}
+
+		return account.getId();
 	}
 
 	private Permission _toPermission(
